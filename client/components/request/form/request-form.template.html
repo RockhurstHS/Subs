@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="container">
+    <input ng-model="$ctrl.fullName" class="form-control" placeholder="Absent Teacher" ng-model="$ctrl.username" disabled>
+    <input ng-model="$ctrl.date" class="datepicker" type="text" placeholder="Date of Substitution">
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+      <div id="timeslot" class="btn-group" role="group" aria-label="timeslot">
+        <button id="timeslot1" type="button" class="btn btn-default">1</button>
+        <button id="timeslot2" type="button" class="btn btn-default">2</button>
+        <button id="timeslot3" type="button" class="btn btn-default">3</button>
+        <button id="timeslot4" type="button" class="btn btn-default">4</button>
+        <button id="timeslot5" type="button" class="btn btn-default">5</button>
+        <button id="timeslot6" type="button" class="btn btn-default">6</button>
+        <button id="timeslot7" type="button" class="btn btn-default">7</button>
+        <button id="timeslot8" type="button" class="btn btn-default">8</button>
+      </div>
+    </div>
+    <input ng-model="$ctrl.className" class="form-control" placeholder="Class Name">
+    <input ng-model="$ctrl.roomNumber" class="form-control" placeholder="Room No">
+    <textarea ng-model="$ctrl.assignment1" class="form-control" placeholder="Assignment"></textarea>
+    <textarea ng-model="$ctrl.assignment2" class="form-control" placeholder="Check myHomework &/or NetClassroom"></textarea>
+
+    <p>Reason for absence</p>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input"> Illness
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input"> Doctor's Appointment
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input"> Professional
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input"> Personal
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input"> Jury Duty
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input"> Funeral / Death
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="checkbox" class="form-check-input"> School Related Activity
+      </label>
+    </div>
+  </div>
+  <div class="container right">
+    <button type="button" class="btn btn-primary" ng-click="$ctrl.submitRequest()">Submit</button>
+  </div>
+</div>

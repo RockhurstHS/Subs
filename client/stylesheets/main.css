@@ -1,0 +1,25 @@
+#request:hover {
+  cursor: pointer;
+  background: #A9E2F3; }
+
+.request-tile {
+  margin-bottom: 7px;
+  padding: 7px; }
+
+.pending {
+  border: solid yellow 3px;
+  background: lightyellow; }
+
+.reviewing {
+  border: solid blue 3px;
+  background: lightblue; }
+
+.approved {
+  border: solid green 3px;
+  background: lightgreen; }
+
+.rejected {
+  border: solid red 3px;
+  background: lightred; }
+
+/*# sourceMappingURL=main.css.map */

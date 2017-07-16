@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="google-signin-client_id" content="342876179484-j1svlvjorpa0bptu960gj208psn9r71t.apps.googleusercontent.com">
+
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-combobox/1.1.8/css/bootstrap-combobox.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/JamesWClark/RadCSS/master/rad.css">
+  <link rel="stylesheet" href="stylesheets/main.css">
+
+</head>
+
+<body ng-app="s" ng-controller="sc">
+  <div id="signin" class="g-signin2"></div>
+  <navbar></navbar>
+  <div class="fluid-container" ng-view></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-combobox/1.1.8/js/bootstrap-combobox.min.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/1.0.1/angular-moment.min.js"></script>
+
+
+  <!-- app -->
+  <script src="app.module.js"></script>
+  <script src="app.config.js"></script>
+  <script src="app.controller.js"></script>
+  <script src="services/auth/auth.service.js"></script>
+  <script src="services/http/http.service.js"></script>
+  <script src="services/request/request.service.js"></script>
+  <script src="services/teacher/teacher.service.js"></script>
+  <script src="components/admin/admin.component.js"></script>
+  <script src="components/home/home.component.js"></script>
+  <script src="components/login/login.component.js"></script>
+  <script src="components/navbar/navbar.component.js"></script>
+  <script src="components/request/form/request-form.component.js"></script>
+  <script src="components/request/tile/request-tile.component.js"></script>
+  <!-- end app -->
+
+  <script src="https://apis.google.com/js/platform.js?onload=appStart" async defer></script>
+
+</body>
+
+</html>

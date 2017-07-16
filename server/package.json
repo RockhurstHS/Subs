@@ -1,0 +1,19 @@
+{
+  "name": "seed",
+  "version": "0.0.0",
+  "description": "Teach Code - Plant a Seed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "J.W. Clark",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "jsonwebtoken": "^7.4.1",
+    "jwk-to-pem": "^1.2.6",
+    "mongodb": "^2.2.29",
+    "request": "^2.81.0"
+  }
+}

@@ -1,0 +1,20 @@
+<div class="flex request-tile bg-primary text-white">
+  <div class="x1">
+    <div class="circle" ng-bind="$parent.req.status"></div>
+  </div>
+  <div class="x3">
+    <div ng-bind="$parent.req.teacher" ng-show="$ctrl.isAdmin"></div>
+    <div ng-bind="$parent.req.date"></div>
+    <div ng-bind="$parent.req.className"></div>
+    <div>Period <span ng-bind="$parent.req.timeslot"></span></div>
+    <div ng-show="$ctrl.isAdmin">
+      <select class="combobox form-control"></select>
+    </div>
+  </div>
+</div>
+
+
+<!-- https://v4-alpha.getbootstrap.com/utilities/colors/ -->
+
+
+<!-- <input class="form-control" placeholder="Assign To" ng-model="assignedTo" ng-show="$ctrl.isAdmin" ng-keyup="$ctrl.filterTeachers(assignedTo)"> -->
