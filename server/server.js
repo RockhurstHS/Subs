@@ -106,6 +106,15 @@ app.get('/api/request/:requestid', function(req, res) {
     });
 });
 
+app.put('/api/request/:requestid', function(req, res) {
+    var query = { _id : new ObjectID(req.params.requestid) };
+    delete req.body._id;
+    Mongo.ops.updateOne('request', query, req.body, function(error, result) {
+        if(error) res.status(500).send(error);
+        else res.status(200).send(result);
+    });
+});
+
 app.get('/api/admin/requests', function(req, res) {
     Mongo.ops.find('request', {}, function(error, result) {
         if(error) res.status(500).send(error);
