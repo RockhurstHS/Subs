@@ -30,9 +30,15 @@ app.component('request.tile', {
         };
         
         self.rejectRequest = function(evt) {
-            var reqId = angular.element(evt.currentTarget).data('id');
+            data.status = "Rejected";
+            data.reason = "Unknown";
             
-            console.log(data._id);
+            Request.reject(data).then(function(response) {
+                if(response.status === 200) {
+                    self.style = getStyle(data);
+                    $scope.$apply();
+                }
+            });
         };
 
         // filter search results
