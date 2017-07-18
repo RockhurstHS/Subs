@@ -3,5 +3,10 @@ app.service('Request', function(Http) {
     
     self.sendNew = function(data) {
         return Http.post('/api/request', data);
-    }
+    };
+    
+    self.accept = function(data) {
+        var url = '/api/request/' + data._id;
+        return Http.put(url, data);
+    };
 });

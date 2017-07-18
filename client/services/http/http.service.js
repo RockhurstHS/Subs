@@ -25,4 +25,15 @@ app.service('Http', function($http, Auth) {
             }
         }));
     };
+    
+    self.put = function(url, data) {
+        return Promise.resolve($http({
+            url: url,
+            method: 'PUT',
+            data: data,
+            headers: {
+                'Authorization': Auth.getUser().idToken
+            }
+        }));
+    };
 });
