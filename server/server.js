@@ -115,6 +115,14 @@ app.put('/api/request/:requestid', function(req, res) {
     });
 });
 
+// plural for one user
+app.get('/api/requests/:userid', function(req, res) {
+    Mongo.ops.find('request', payload(req), function(error, result) {
+        if(error) res.status(500).send(error);
+        else res.status(201).send(result);
+    });
+});
+
 app.get('/api/admin/requests', function(req, res) {
     Mongo.ops.find('request', {}, function(error, result) {
         if(error) res.status(500).send(error);
@@ -124,13 +132,6 @@ app.get('/api/admin/requests', function(req, res) {
 
 app.get('/api/teachers', function(req, res) {
     res.status(200).send(TEACHERS);
-});
-
-app.get('/api/requests/:userid', function(req, res) {
-    Mongo.ops.find('request', payload(req), function(error, result) {
-        if(error) res.status(500).send(error);
-        else res.status(201).send(result);
-    });
 });
 
 app.get('/api/credential', function(req, res) {
