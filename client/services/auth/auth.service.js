@@ -73,6 +73,8 @@ app.service('Auth', function($http, $location, $rootScope, $window) {
             });
             
             $rootScope.$broadcast('login');
+            
+            console.log('idtoken = ' + authResponse.id_token);
             // $window.location.href = $location.path('/classes').absUrl();
 
         } else {

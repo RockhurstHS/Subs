@@ -115,9 +115,16 @@ app.put('/api/request/:requestid', function(req, res) {
     });
 });
 
-// plural for one user
+// returns personal requests, as well as sub assignments
 app.get('/api/requests/:userid', function(req, res) {
-    Mongo.ops.find('request', payload(req), function(error, result) {
+    var idToken = req.headers.authorization;
+    var decoded = jwt.decode(idToken);
+    var e = decoded.email;
+    var u = decoded.sub;
+    
+    var query = { '$or' : [ { assignedTo : e } , { userid : u } ] };
+
+    Mongo.ops.find('request', query, function(error, result) {
         if(error) res.status(500).send(error);
         else res.status(201).send(result);
     });
@@ -128,7 +135,7 @@ app.get('/api/admin/requests', function(req, res) {
         if(error) res.status(500).send(error);
         else res.status(200).send(result);
     });
-})
+});
 
 app.get('/api/teachers', function(req, res) {
     res.status(200).send(TEACHERS);
