@@ -16,6 +16,21 @@ app.component('calendar', {
         Request.getUserRequests().then(function(response) {
             console.log(JSON.stringify(response.data));
         });
+        
+        Request.getUserRequests().then(function(response) {
+            response.data.forEach(function(req) {
+                console.log(req._id);
+                var evt = {
+                    id: req._id, 
+                    title: 'Period ' + req.timeslot + '-' + req.className, 
+                    start: new Date(req.date),
+                    allDay: true
+                };
+                console.log(evt);
+                $scope.reqs.push(evt);
+            });
+            $scope.$apply();
+        });
 
         // https://fullcalendar.io/docs/event_data/events_array/
         $scope.sources1 = [
@@ -31,7 +46,8 @@ app.component('calendar', {
         
         $scope.eventSources = [
             $scope.sources1,
-            $scope.sources2
+            $scope.sources2,
+            $scope.reqs
         ];
 
         $scope.uiConfig = {
@@ -39,7 +55,8 @@ app.component('calendar', {
                 editable: true,
                 eventSources: [
                     { events : $scope.sources1 },
-                    { events : $scope.sources2 }
+                    { events : $scope.sources2 },
+                    { events : $scope.reqs }
                 ],
                 header: {
                     left: 'month basicWeek basicDay agendaWeek agendaDay',
