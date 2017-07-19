@@ -6,6 +6,9 @@ app.config(['$locationProvider', '$routeProvider',
         .when('/admin', {
             template: '<admin></admin>'
         })
+        .when('/calendar', {
+            template: '<calendar></calendar>'
+        })
         .when('/h', {
             template: '<home cache-view="false"></home>'
         })

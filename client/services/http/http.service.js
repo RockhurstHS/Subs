@@ -1,8 +1,14 @@
 app.service('Http', function($http, Auth) {
     
+    // todo: https://stackoverflow.com/a/37896285
+    
     console.log('Http service loaded');
 
     var self = this;
+    
+    function isTokenExpired() {
+        
+    }
 
     self.get = function(url) {
         return Promise.resolve($http({

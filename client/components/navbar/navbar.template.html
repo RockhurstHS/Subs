@@ -18,11 +18,13 @@
         <li><a ng-href="#request">Request</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a ng-bind="$ctrl.email"></a></li>
+        <li>
+          <a ng-bind="$ctrl.email"></a>
+        </li>
+        <li><a ng-href="#calendar">Calendar</a></li>
         <li><a ng-href="#admin">Admin</a></li>
-
-        <button id="signout" ng-click="$ctrl.signOut()">Signout</button>
-        <button id="disconnect" ng-click="$ctrl.disconnect()">Disconnect</button>
+        <li><a id="signout" ng-click="$ctrl.signOut()">Signout</a></li>
+        <li><a id="disconnect" ng-click="$ctrl.disconnect()">Disconnect</a></li>
 
       </ul>
     </div>

@@ -1,6 +1,7 @@
 var app = angular.module('s', [
     'ngRoute',
-    'angularMoment'
+    'angularMoment',
+    'ui.calendar'
 ]);
 
 app.run(['$location', '$rootScope', '$route', 'Auth', function($location, $rootScope, $route, Auth) {
