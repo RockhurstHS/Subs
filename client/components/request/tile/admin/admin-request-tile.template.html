@@ -1,0 +1,19 @@
+<div class="flex request-tile {{$ctrl.style}}" id="{{$parent.req._id}}">
+  <div class="x1">
+    <div ng-bind="$parent.req.status"></div>
+    <div id="status-button-bar">
+      <div ng-show="$ctrl.isAdmin" class="inline"><button ng-click="$ctrl.acceptRequest($event)" class="form-control btn-success">Accept</button></div>
+      <div ng-show="$ctrl.isAdmin" class="inline"><button ng-click="$ctrl.rejectRequest($event)" class="form-control btn-danger">Reject</button></div>
+    </div>
+  </div>
+  <div class="x3">
+    <div ng-bind="$parent.req.teacher" ng-show="$ctrl.isAdmin"></div>
+    <div ng-bind="$parent.req.date"></div>
+    <div ng-bind="$parent.req.className"></div>
+    <div>Period <span ng-bind="$parent.req.timeslot"></span></div>
+    <div ng-show="$ctrl.isAdmin">
+      <select class="combobox form-control"></select>
+    </div>
+  </div>
+  <span ng-show="$ctrl.popView()"></span><!-- hax : https://stackoverflow.com/a/26961453/1161948 -->
+</div>

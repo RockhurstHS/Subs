@@ -1,0 +1,11 @@
+<div class="flex request-tile {{$ctrl.style}}" id="{{$ctrl.id}}">
+  <div class="x1">
+    <div ng-bind="$ctrl.status"></div>
+  </div>
+  <div class="x3">
+    <div ng-bind="$ctrl.date"></div>
+    <div ng-bind="$ctrl.className"></div>
+    <div>Period <span ng-bind="$ctrl.timeslot"></span></div>
+    <div>Assigned to: <span ng-bind="$ctrl.assignedTo"></span></div>
+  </div>
+</div>
