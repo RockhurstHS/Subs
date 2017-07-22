@@ -1,6 +1,6 @@
 app.component('home', {
     templateUrl: 'components/home/home.template.html',
-    controller: function HomeController(Auth, Http, $scope) {
+    controller: function HomeController(Auth, Http, Teacher, $scope) {
         var self = this;
         self.requests = [];
         
