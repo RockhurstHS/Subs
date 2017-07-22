@@ -10,7 +10,8 @@ app.config(['$locationProvider', '$routeProvider',
             template: '<calendar></calendar>'
         })
         .when('/h', {
-            template: '<home cache-view="false"></home>'
+            //template: '<home cache-view="false"></home>'
+            template: '<home.calendar></home.calendar>'
         })
         .when('/hi', {
             template: '<p>HI</p>'
