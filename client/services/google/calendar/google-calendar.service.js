@@ -15,6 +15,19 @@ app.service('GoogleCalendar', function($http, moment) {
         
         $http.get(https).then(function(response) {
             console.log(JSON.stringify(response));
+            
+            if(response.data && response.data.items) {
+                var items = response.data.items;
+                
+                var dayRegex = /[ABCDEF] Day/;
+                
+                for(var i = 0; i < items.length; i++) {
+                    var summary = items[i].summary;
+                    if(summary.search(/[ABCDEF] Day/) !== -1) {
+                        console.log('MATCH = ' + summary.search(/[ABCDEF] Day/));
+                    }
+                }
+            }
         });
         console.log(https);
     };
