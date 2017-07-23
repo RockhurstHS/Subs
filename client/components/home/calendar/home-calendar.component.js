@@ -1,11 +1,15 @@
 app.component('home.calendar', {
     templateUrl: 'components/home/calendar/home-calendar.template.html',
-    controller: function HomeCalendarController($scope, Request) {
+    controller: function HomeCalendarController($scope, GoogleCalendar, Request) {
+        
         
         var date = new Date();
         var d = date.getDate();
         var m = date.getMonth();
         var y = date.getFullYear();
+
+        GoogleCalendar.getDay(new Date(y, m, d - 2));
+
         
         $scope.reqs = [];
             
@@ -45,6 +49,10 @@ app.component('home.calendar', {
             $scope.sources2,
             $scope.reqs
         ];
+        
+        $scope.alertEventOnClick = function() {
+            console.log('cal click');
+        }
 
         $scope.uiConfig = {
             calendar: {
@@ -67,9 +75,5 @@ app.component('home.calendar', {
                 }
             }
         };
-
-        $scope.alertEventOnClick = function() {
-            console.log('cal click');
-        }
     }
 });
