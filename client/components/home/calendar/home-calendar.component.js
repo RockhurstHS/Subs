@@ -50,16 +50,15 @@ app.component('home.calendar', {
             calendar: {
                 editable: true,
                 eventSources: [
-                    { events : $scope.sources1 },
-                    { events : $scope.sources2 },
-                    { events : $scope.reqs }
+                    { events : $scope.sources1, color : 'black' },
+                    { events : $scope.sources2, color : 'green' },
+                    { events : $scope.reqs, color : '#FBC' }
                 ],
                 header: {
                     left: 'month basicWeek basicDay agendaWeek agendaDay',
                     center: 'title',
                     right: 'today prev,next'
                 },
-                eventColor: '#FFBB88',
                 eventClick: $scope.alertEventOnClick,
                 eventDrop: $scope.alertOnDrop,
                 eventResize: $scope.alertOnResize,
