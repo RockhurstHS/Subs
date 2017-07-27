@@ -6,6 +6,11 @@ app.service('Request', function(Http, Auth) {
         return Http.get(url);
     }
 
+    self.getAll = function() {
+        var url = '/api/requests';
+        return Http.get(url);
+    }
+    
     self.sendNew = function(data) {
         return Http.post('/api/request', data);
     };

@@ -1,6 +1,6 @@
 app.component('home.calendar', {
     templateUrl: 'components/home/calendar/home-calendar.template.html',
-    controller: function HomeCalendarController($scope, GoogleCalendar, Request) {
+    controller: function HomeCalendarController($scope, GoogleCalendar, Request, Auth) {
         
         
         var date = new Date();
@@ -10,9 +10,11 @@ app.component('home.calendar', {
 
         GoogleCalendar.getDay(new Date(y, m, d - 2));
 
-        
-        $scope.reqs = [];
-            
+        $scope.userReqs = [];
+        $scope.otherReqs = [];
+        $scope.assignedReqs = [];
+
+        /*
         Request.getUserRequests().then(function(response) {
             console.log(JSON.stringify(response.data));
         });
@@ -31,36 +33,54 @@ app.component('home.calendar', {
             });
             $scope.$apply();
         });
-
-        // https://fullcalendar.io/docs/event_data/events_array/
-        $scope.sources1 = [
-            {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-            {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-            {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false}
-        ];
+        */
         
-        $scope.sources2 = [
-            {title: 'All Day Event',start: new Date(y, m, 1)},
-            {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)}
-        ];
+        function getEvent(req) {
+            var evt = {
+                id: req._id, 
+                title: 'Period ' + req.timeslot + '-' + req.className, 
+                start: new Date(req.date),
+                allDay: true,
+                color: 'red'
+            };
+            return evt;
+        }
+        
+        Request.getAll().then(function(response) {
+            var data = response.data;
+            var email = Auth.getUser().email;
+            
+            data.forEach(function(subRequest) {
+                if(subRequest.email === email) {
+                    $scope.userReqs.push(getEvent(subRequest));
+                } else if(subRequest.email !== email) {
+                    $scope.otherReqs.push(getEvent(subRequest));
+                } else if(subRequest.assignedTo === email) {
+                    $scope.assignedReqs.push(getEvent(subRequest));
+                }
+            });
+            
+            $scope.$apply();
+        });
         
         $scope.eventSources = [
-            $scope.sources1,
-            $scope.sources2,
-            $scope.reqs
+            $scope.userReqs,
+            $scope.otherReqs,
+            $scope.assignedReqs
         ];
         
         $scope.alertEventOnClick = function() {
             console.log('cal click');
+            console.log($scope.eventSources);
         }
 
         $scope.uiConfig = {
             calendar: {
                 editable: true,
                 eventSources: [
-                    { events : $scope.sources1, color : 'black' },
-                    { events : $scope.sources2, color : 'green' },
-                    { events : $scope.reqs, color : '#FBC' }
+                    { events : $scope.userReqs },
+                    { events : $scope.otherReqs },
+                    { events : $scope.assignedReqs }
                 ],
                 header: {
                     left: 'month basicWeek basicDay agendaWeek agendaDay',

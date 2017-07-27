@@ -115,6 +115,16 @@ app.put('/api/request/:requestid', function(req, res) {
     });
 });
 
+// returns all requests
+app.get('/api/requests', function(req, res) {
+    // todo: limit to just last week, this week, and next week.
+    var query = {};
+    Mongo.ops.find('request', query, function(error, result) {
+        if(error) res.status(500).send(error);
+        else res.status(200).send(result);
+    });
+});
+
 // returns personal requests, as well as sub assignments
 app.get('/api/requests/:userid', function(req, res) {
     var idToken = req.headers.authorization;
@@ -126,7 +136,7 @@ app.get('/api/requests/:userid', function(req, res) {
 
     Mongo.ops.find('request', query, function(error, result) {
         if(error) res.status(500).send(error);
-        else res.status(201).send(result);
+        else res.status(200).send(result);
     });
 });
 
