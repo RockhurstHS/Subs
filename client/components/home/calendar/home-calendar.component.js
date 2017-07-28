@@ -64,9 +64,9 @@ app.component('home.calendar', {
         });
         
         $scope.eventSources = [
-            $scope.userReqs,
-            $scope.otherReqs,
-            $scope.assignedReqs
+            { events : $scope.userReqs, color: '#888' },
+            { events : $scope.otherReqs, color: '#CCC' },
+            { events : $scope.assignedReqs, color: '#ABC' }
         ];
         
         $scope.alertEventOnClick = function() {
@@ -78,9 +78,9 @@ app.component('home.calendar', {
             calendar: {
                 editable: true,
                 eventSources: [
-                    { events : $scope.userReqs },
-                    { events : $scope.otherReqs },
-                    { events : $scope.assignedReqs }
+                    { events : $scope.userReqs, color: '#888' },
+                    { events : $scope.otherReqs, color: '#CCC' },
+                    { events : $scope.assignedReqs, color: '#ABC' }
                 ],
                 header: {
                     left: 'month basicWeek basicDay agendaWeek agendaDay',
