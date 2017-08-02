@@ -1,6 +1,8 @@
 app.component('home.calendar', {
     templateUrl: 'components/home/calendar/home-calendar.template.html',
-    controller: function HomeCalendarController($scope, GoogleCalendar, Request, Auth) {
+    controller: function HomeCalendarController($log, $scope, GoogleCalendar, Request, Auth) {
+        
+        $log.debug('\n--- COMPONENT: home.calendar ---\n\n');
         
         
         var date = new Date();
@@ -50,6 +52,9 @@ app.component('home.calendar', {
             var data = response.data;
             var email = Auth.getUser().email;
             
+            $log.debug('component: home.calendar, debug: ');
+            $log.debug('Request.getAll() has json: ' + JSON.stringify(data));
+                       
             data.forEach(function(subRequest) {
                 if(subRequest.email === email) {
                     $scope.userReqs.push(getEvent(subRequest));
@@ -60,13 +65,17 @@ app.component('home.calendar', {
                 }
             });
             
+            $log.debug('\n$scope.userReqs = ' + $scope.userReqs);
+            $log.debug('\n$scope.otherReqs = ' + $scope.otherReqs);
+            //$log.debug('\n$scope.assignedReqs = ' + $scope.assignedReqs);
+            
             $scope.$apply();
         });
         
         $scope.eventSources = [
             { events : $scope.userReqs, color: '#888' },
-            { events : $scope.otherReqs, color: '#CCC' },
-            { events : $scope.assignedReqs, color: '#ABC' }
+            { events : $scope.otherReqs, color: '#CCC' }
+            //{ events : $scope.assignedReqs, color: '#ABC' }
         ];
         
         $scope.alertEventOnClick = function() {
@@ -79,8 +88,7 @@ app.component('home.calendar', {
                 editable: true,
                 eventSources: [
                     { events : $scope.userReqs, color: '#888' },
-                    { events : $scope.otherReqs, color: '#CCC' },
-                    { events : $scope.assignedReqs, color: '#ABC' }
+                    { events : $scope.otherReqs, color: '#CCC' }
                 ],
                 header: {
                     left: 'month basicWeek basicDay agendaWeek agendaDay',

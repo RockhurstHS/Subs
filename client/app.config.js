@@ -1,8 +1,9 @@
-app.config(['$locationProvider', '$routeProvider', 
-    function config($locationProvider, $routeProvider) {
-        $locationProvider.hashPrefix('');
-        
-        $routeProvider
+app.config(function config($locationProvider, $logProvider, $routeProvider) {
+    $locationProvider.hashPrefix('');
+
+    $logProvider.debugEnabled(true);
+
+    $routeProvider
         .when('/admin', {
             template: '<admin.calendar></admin.calendar>'
         })
@@ -29,6 +30,4 @@ app.config(['$locationProvider', '$routeProvider',
             template: '<request.form></request.form>'
         })
         .otherwise('/');
-    }
-]);
-
+});

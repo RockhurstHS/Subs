@@ -1,4 +1,7 @@
-app.service('GoogleCalendar', function($http, moment) {
+app.service('GoogleCalendar', function($http, $log, moment) {
+    
+    $log.debug('\n--- SERVICE: GoogleCalendar ---\n\n');
+
     var self = this;
     
     var calendarId = 'rockhursths.edu_vm6bt9h5uust4qkr1tqnkmtnac@group.calendar.google.com';
@@ -9,12 +12,11 @@ app.service('GoogleCalendar', function($http, moment) {
         date = '08-17-2017';
         var startMin = moment(date, 'MM-DD-YYYY').format();
         var startMax = moment(startMin).add(1, 'days');
-        console.log('min = ' + startMin);
-        console.log('max = ' + startMax);
         var https = 'https://www.googleapis.com/calendar/v3/calendars/' + calendarId + '/events?singleEvents=true&orderBy=startTime&sortOrder=ascending&timeMin=' + moment(startMin).format() + '&timeMax=' + moment(startMax).format() + '&key=' + KEY;
         
         $http.get(https).then(function(response) {
-            console.log(JSON.stringify(response));
+            $log.debug('\nGoogleCalendar service requested url: ' + https);
+            $log.debug('\nGoogleCalendar service got result: ' + JSON.stringify(response));
             
             if(response.data && response.data.items) {
                 var items = response.data.items;
@@ -24,11 +26,11 @@ app.service('GoogleCalendar', function($http, moment) {
                 for(var i = 0; i < items.length; i++) {
                     var summary = items[i].summary;
                     if(summary.search(/[ABCDEF] Day/) !== -1) {
-                        console.log('MATCH = ' + summary.search(/[ABCDEF] Day/));
+                        //todo Match = 18 because 18 is the index of the match
+                        console.log('\nMATCH = ' + summary.search(/[ABCDEF] Day/));
                     }
                 }
             }
         });
-        console.log(https);
     };
 });
