@@ -8,5 +8,14 @@ app.component('admin.faculty', {
         self.setAvailability = function() {
             console.log('avail');
         };
+        
+        self.addTeacher = function() {
+            Teacher.create({
+                email : self.newTeacher
+            }).then(function() {
+                console.log('made a teacher');
+            })
+            console.log('hmm');
+        };
     }
 });

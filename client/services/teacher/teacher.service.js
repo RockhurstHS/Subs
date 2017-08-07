@@ -3,6 +3,10 @@ app.service('Teacher', function(Http, $rootScope) {
     var self = this;
 
     self.roster = [];
+    
+    self.create = function(teacher) {
+        return Http.post('/api/admin/teacher', teacher);
+    }
 
     self.getRoster = function() {
         return self.roster;

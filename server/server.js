@@ -147,6 +147,15 @@ app.get('/api/admin/requests', function(req, res) {
     });
 });
 
+app.post('/api/admin/teacher', function(req, res) {
+    var query = req.body;
+    var data = req.body;
+    Mongo.ops.upsert('faculty', query, data, function(error, result) {
+        if(error) res.status(500).send(error);
+        else res.status(201).send(result);
+    });
+});
+
 app.get('/api/teachers', function(req, res) {
     res.status(200).send(TEACHERS);
 });
