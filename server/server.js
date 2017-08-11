@@ -140,6 +140,22 @@ app.get('/api/requests/:userid', function(req, res) {
     });
 });
 
+// update a faculty members sub availability
+app.put('/api/admin/faculty/availability', function(req, res) {
+    var query = {
+        email : req.body.email,
+    };
+    var data = {
+        slots : new Array(8)
+    };
+    data.slots[req.body.slot - 1] = req.body.status;
+    
+    Mongo.ops.upsert('faculty', query, data, function(error, result) {
+        if(error) res.status(500).send(error);
+        else res.status(200).send(result);
+    });
+});
+
 app.get('/api/admin/requests', function(req, res) {
     Mongo.ops.find('request', {}, function(error, result) {
         if(error) res.status(500).send(error);
@@ -157,7 +173,11 @@ app.post('/api/admin/teacher', function(req, res) {
 });
 
 app.get('/api/teachers', function(req, res) {
-    res.status(200).send(TEACHERS);
+    var query = {};
+    Mongo.ops.find('faculty', query, function(error, result) {
+        if(error) res.status(500).send(error);
+        else res.status(200).send(result);
+    });
 });
 
 app.get('/api/credential', function(req, res) {

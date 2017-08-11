@@ -19,6 +19,14 @@ app.service('Teacher', function(Http, $rootScope) {
         }
         return html;
     };
+    
+    self.updateAvailability = function(teacher, slot, status) {
+        return Http.put('/api/admin/faculty/availability', {
+            email : teacher,
+            slot : slot,
+            status: status
+        });
+    };
 
     self.init = function() {
         Http.get('/api/teachers').then(function(response) {

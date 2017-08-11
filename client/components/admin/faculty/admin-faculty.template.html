@@ -1,14 +1,14 @@
 <div ng-repeat="teacher in $ctrl.faculty">
   <div>{{teacher}}</div>
   <div class="btn-group" role="group" aria-label="availability">
-    <button type="button" class="btn btn-default" ng-click="$ctrl.setAvailability()">1</button>
-    <button type="button" class="btn btn-default" ng-click="$ctrl.setAvailability()">2</button>
-    <button type="button" class="btn btn-default" ng-click="$ctrl.setAvailability()">3</button>
-    <button type="button" class="btn btn-default" ng-click="$ctrl.setAvailability()">4</button>
-    <button type="button" class="btn btn-default" ng-click="$ctrl.setAvailability()">5</button>
-    <button type="button" class="btn btn-default" ng-click="$ctrl.setAvailability()">6</button>
-    <button type="button" class="btn btn-default" ng-click="$ctrl.setAvailability()">7</button>
-    <button type="button" class="btn btn-default" ng-click="$ctrl.setAvailability()">8</button>
+    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="1" ng-click="$ctrl.setAvailability($event)">1</button>
+    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="2" ng-click="$ctrl.setAvailability($event)">2</button>
+    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="3" ng-click="$ctrl.setAvailability($event)">3</button>
+    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="4" ng-click="$ctrl.setAvailability($event)">4</button>
+    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="5" ng-click="$ctrl.setAvailability($event)">5</button>
+    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="6" ng-click="$ctrl.setAvailability($event)">6</button>
+    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="7" ng-click="$ctrl.setAvailability($event)">7</button>
+    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="8" ng-click="$ctrl.setAvailability($event)">8</button>
   </div>
 </div>
 <div>
