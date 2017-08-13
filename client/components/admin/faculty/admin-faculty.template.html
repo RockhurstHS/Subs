@@ -1,5 +1,5 @@
 <div ng-repeat="teacher in $ctrl.faculty">
-  <div>{{teacher}}</div>
+  <div>{{teacher.email}}</div>
   <div class="btn-group" role="group" aria-label="availability">
     <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="1" ng-click="$ctrl.setAvailability($event)">1</button>
     <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="2" ng-click="$ctrl.setAvailability($event)">2</button>

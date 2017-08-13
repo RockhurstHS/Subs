@@ -9,7 +9,7 @@ app.service('Teacher', function(Http, $rootScope) {
     }
 
     self.getRoster = function() {
-        return self.roster;
+        return Http.get('/api/teachers');
     };
 
     self.getHtmlSelectOptions = function() {
@@ -25,12 +25,6 @@ app.service('Teacher', function(Http, $rootScope) {
             email : teacher,
             slot : slot,
             status: status
-        });
-    };
-
-    self.init = function() {
-        Http.get('/api/teachers').then(function(response) {
-            self.roster = response.data;
         });
     };
 });
