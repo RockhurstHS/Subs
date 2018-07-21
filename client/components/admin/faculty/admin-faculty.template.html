@@ -1,14 +1,7 @@
 <div ng-repeat="teacher in $ctrl.faculty">
   <div>{{teacher.email}}</div>
   <div class="btn-group" role="group" aria-label="availability">
-    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="1" ng-click="$ctrl.setAvailability($event)">1</button>
-    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="2" ng-click="$ctrl.setAvailability($event)">2</button>
-    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="3" ng-click="$ctrl.setAvailability($event)">3</button>
-    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="4" ng-click="$ctrl.setAvailability($event)">4</button>
-    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="5" ng-click="$ctrl.setAvailability($event)">5</button>
-    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="6" ng-click="$ctrl.setAvailability($event)">6</button>
-    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="7" ng-click="$ctrl.setAvailability($event)">7</button>
-    <button type="button" class="btn btn-default" data-teacher="{{teacher}}" data-slot="8" ng-click="$ctrl.setAvailability($event)">8</button>
+    <button ng-repeat="i in [1,2,3,4,5,6,7,8]" type="button" class="btn btn-default" data-teacher="{{teacher.email}}" data-slot="{{i}}" ng-click="$ctrl.setAvailability($event)">{{i}}</button>
   </div>
 </div>
 <div>

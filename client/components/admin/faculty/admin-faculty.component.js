@@ -13,8 +13,10 @@ app.component('admin.faculty', {
         self.setAvailability = function(evt) {
             var slot = evt.target.getAttribute('data-slot');
             var email = evt.target.getAttribute('data-teacher');
+            console.log(slot);
+            console.log(email);
 
-            Teacher.updateAvailability(email, slot, true);
+            Teacher.updateAvailability(email, slot, false);
         };
         
         self.addTeacher = function() {

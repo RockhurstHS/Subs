@@ -9,6 +9,7 @@ app.component('request.form', {
             var reqUrl = '/api/request/' + $routeParams.requestid;
             Http.get(reqUrl).then(function(response) {
                 var req = response.data;
+                console.log(response);
                 self.teacher = req.teacher;
                 self.date = req.date;
                 self.className = req.className;

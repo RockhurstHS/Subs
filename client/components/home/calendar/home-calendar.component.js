@@ -79,7 +79,7 @@ app.component('home.calendar', {
         ];
         
         $scope.alertEventOnClick = function() {
-            console.log('cal click');
+            console.log('home cal click');
             console.log($scope.eventSources);
         }
 

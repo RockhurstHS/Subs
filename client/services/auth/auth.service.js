@@ -86,8 +86,21 @@ app.service('Auth', function($http, $location, $rootScope, $window) {
         }
     };
 
-    var userChanged = function(user) {
-        console.log('userChanged()');
+    var userChanged = function(googleUser) {
+        console.log(moment().format() + ': user changed');
+        var profile = googleUser.getBasicProfile();
+        var authResponse = googleUser.getAuthResponse();
+        self.setUser({
+            userid      : profile.getId(),
+            fullName    : profile.getName(),
+            firstName   : profile.getGivenName(),
+            lastName    : profile.getFamilyName(),
+            photo       : profile.getImageUrl(),
+            email       : profile.getEmail(),
+            domain      : googleUser.getHostedDomain(),
+            idToken     : authResponse.id_token,
+            expiresAt   : authResponse.expires_at
+        });
     };
 
     self.signOut = function signOut() {
@@ -106,8 +119,41 @@ app.service('Auth', function($http, $location, $rootScope, $window) {
         console.log(auth2);
     };
     
+    self.refresh = function(idToken) {
+        // pending testing: https://stackoverflow.com/a/37580494/1161948
+        if (self.isSignedIn) {
+            var googleUser = auth2.currentUser.get();
+            var authResponse = googleUser.getAuthResponse();
+            
+            console.log('user is signed in');
+            console.log('check the id token expiry ' + authResponse.id_token);
+            console.log('parsed = ' + JSON.stringify(parseJwt(authResponse.id_token)));
+            // example: http://www.jsonmate.com/permalink/5a4d0b57a35702c60cc60d4c
+
+            var jwt = parseJwt(authResponse.id_token);
+            var now = moment(); 
+            var exp = moment(parseInt('' + jwt.exp + '000'));
+            console.log('expiry is ' + exp);
+            console.log('now is ' + now);
+            if(now.isSame(exp) || now.isAfter(exp)) {
+                console.log('time to refresh the token');
+                gapi.auth2.getAuthInstance().currentUser.get().reloadAuthResponse().then(function() {
+                    console.log('check it now - ' + JSON.stringify(parseJwt(authResponse.id_token)));
+                });
+            }
+        }
+    };
+    
+    // called by app.controller.js `$window.start`
     self.start = function() {
         console.log('appStart()');
         gapi.load('auth2', initSigninV2);       
     }
+    
+    // https://stackoverflow.com/a/38552302/1161948
+    function parseJwt (token) {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(atob(base64));
+    };
 });

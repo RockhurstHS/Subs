@@ -1,6 +1,6 @@
 app.component('admin.calendar', {
     templateUrl: 'components/admin/calendar/admin-calendar.template.html',
-    controller: function HomeCalendarController($scope, GoogleCalendar, Request, Auth) {
+    controller: function HomeCalendarController($location, $scope, GoogleCalendar, Request, Auth) {
         
         
         var date = new Date();
@@ -73,10 +73,16 @@ app.component('admin.calendar', {
             console.log('cal click');
             console.log($scope.eventSources);
         }
+        
+        $scope.alertEventOnClick = function(evt) {
+            console.log('admin calendar event click');
+            $location.path('request/' + evt.id);
+            $scope.$apply();
+        }
 
         $scope.uiConfig = {
             calendar: {
-                editable: true,
+                editable: false,
                 eventSources: [
                     { events : $scope.userReqs, color: '#888' },
                     { events : $scope.otherReqs, color: '#CCC' },
@@ -95,5 +101,7 @@ app.component('admin.calendar', {
                 }
             }
         };
+        
+
     }
 });

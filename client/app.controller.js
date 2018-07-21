@@ -4,6 +4,7 @@ app.controller('sc', function($rootScope, $window, Auth, Teacher) {
 
     });
     
+    // called by app.module.js `appStart`
     $window.start = function() {
         Auth.start();
     };

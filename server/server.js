@@ -75,8 +75,6 @@ Mongo.connect(MONGO_URL, function(err, db) {
     };
 });
 
-
-
 // web server
 var app = express();
 
@@ -101,8 +99,10 @@ app.get('/api/request/:requestid', function(req, res) {
     var query = { _id : new ObjectID(req.params.requestid) };
     query.userid = getUserId(req);
     Mongo.ops.findOne('request', query, function(error, result) {
+        console.log('find one request for user id ' + query.userid);
+        console.log(result);
         if(error) res.status(500).send(error);
-        else res.status(201).send(result);
+        else res.status(200).send(result);
     });
 });
 
@@ -111,7 +111,7 @@ app.put('/api/request/:requestid', function(req, res) {
     delete req.body._id;
     Mongo.ops.updateOne('request', query, req.body, function(error, result) {
         if(error) res.status(500).send(error);
-        else res.status(200).send(result);
+        else res.status(201).send(result);
     });
 });
 
@@ -142,15 +142,19 @@ app.get('/api/requests/:userid', function(req, res) {
 
 // update a faculty members sub availability
 app.put('/api/admin/faculty/availability', function(req, res) {
-    var query = {
-        email : req.body.email,
-    };
-    var data = {
-        slots : new Array(8)
-    };
-    data.slots[req.body.slot - 1] = req.body.status;
+    var email = req.body.email;
+    var slot = req.body.slot;
+    var torf = req.body.status;
     
-    Mongo.ops.upsert('faculty', query, data, function(error, result) {
+    var query = { email : email };
+    var data = { 
+        availability : {
+            $each : [ torf ],
+            $position: slot
+        }
+    };
+        
+    Mongo.ops.updateOne('faculty', query, data, function(error, result) {
         if(error) res.status(500).send(error);
         else res.status(200).send(result);
     });

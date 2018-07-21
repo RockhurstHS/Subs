@@ -20,9 +20,18 @@ app.run(['$location', '$rootScope', '$route', 'Auth', function($location, $rootS
         }
     });
 
+    // detect awake from computer sleep, used to refresh auth tokens
+    var wakeWorker = new Worker('workers/detect-wake.js');
+    wakeWorker.onmessage = function (ev) {
+        if (ev && ev.data === 'wakeup') {
+            console.log('computer woke from sleep');
+            Auth.refresh();
+        }
+    }
+    
 }]);
 
-
+// called by linked script <https://apis.google.com/js/platform.js?onload=appStart>
 // anti-pattern? gapi script callback and it hits the login module eventually
 function appStart() {
     window.start();
