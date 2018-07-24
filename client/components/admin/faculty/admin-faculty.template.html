@@ -1,10 +1,15 @@
-<div ng-repeat="teacher in $ctrl.faculty">
-  <div>{{teacher.email}}</div>
-  <div class="btn-group" role="group" aria-label="availability">
-    <button ng-repeat="i in [1,2,3,4,5,6,7,8]" type="button" class="btn btn-default" data-teacher="{{teacher.email}}" data-slot="{{i}}" ng-click="$ctrl.setAvailability($event)">{{i}}</button>
+<div class="container">
+  <div id="faculty-list" class="col-md-12">
+    <div ng-repeat="teacher in $ctrl.faculty">
+      <div>{{teacher.email}}</div>
+      <div class="btn-group" role="group" aria-label="availability">
+        <button ng-repeat="i in [1,2,3,4,5,6,7,8]" type="button" class="btn btn-default" data-teacher="{{teacher.email}}" data-slot="{{i}}" ng-click="$ctrl.setAvailability($event)">{{i}}</button>
+      </div>
+    </div>
+    <div>
+      <input ng-model="$ctrl.newTeacher" class="form-control" placeholder="Add a teacher">
+      <button type="button" class="btn btn-default" ng-click="$ctrl.addTeacher()">Insert</button>
+    </div>
   </div>
-</div>
-<div>
-  <input ng-model="$ctrl.newTeacher" class="form-control" placeholder="Add a teacher">
-  <button type="button" class="btn btn-default" ng-click="$ctrl.addTeacher()">Insert</button>
+  <div id="department-list" class="col-md-12">asfd</div>
 </div>

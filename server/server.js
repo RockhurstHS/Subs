@@ -160,6 +160,14 @@ app.put('/api/admin/faculty/availability', function(req, res) {
     });
 });
 
+app.post('/api/admin/department', function(req, res) {
+    var dept = req.body;
+    Mongo.ops.insert('department', dept, function(error, result) {
+        if(error) res.status(500).send(error);
+        else res.status(201).send(result);
+    });
+});
+
 app.get('/api/admin/requests', function(req, res) {
     Mongo.ops.find('request', {}, function(error, result) {
         if(error) res.status(500).send(error);

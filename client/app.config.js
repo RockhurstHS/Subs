@@ -5,10 +5,14 @@ app.config(function config($locationProvider, $logProvider, $routeProvider) {
 
     $routeProvider
         .when('/admin', {
-            template: '<admin.calendar></admin.calendar>'
+            template: '<admin></admin>'
+            //template: '<admin.calendar></admin.calendar>'
         })
         .when('/admin/faculty', {
             template: '<admin.faculty></admin.faculty>'
+        })
+        .when('/admin/departments', {
+            template: '<admin.departments></admin.departments>'
         })
         .when('/calendar', {
             template: '<calendar></calendar>'
