@@ -81,7 +81,7 @@ var app = express();
 // use middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(allowCrossDomain);
+// app.use(allowCrossDomain); not crossing domains today
 app.use(logAllRequests);
 app.use('/api', authorize);
 app.use('/api/admin', adminAuthorize);
@@ -160,9 +160,17 @@ app.put('/api/admin/faculty/availability', function(req, res) {
     });
 });
 
+app.get('/api/admin/departments', function(req, res) {
+    Mongo.ops.find('department', {}, function(error, result) {
+        if(error) res.status(500).send(error);
+        else res.status(200).send(result);
+    });
+});
+
 app.post('/api/admin/department', function(req, res) {
-    var dept = req.body;
-    Mongo.ops.insert('department', dept, function(error, result) {
+    var query = req.body;
+    var data = req.body;
+    Mongo.ops.upsert('department', query, data, function(error, result) {
         if(error) res.status(500).send(error);
         else res.status(201).send(result);
     });

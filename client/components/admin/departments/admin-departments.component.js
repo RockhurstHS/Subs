@@ -18,6 +18,7 @@ app.component('admin.departments', {
             
             Department.create(dept).then(function() {
                 self.departments.push(dept);
+                self.newDepartment = '';
                 $scope.$apply();
             });
         };
